@@ -1,6 +1,6 @@
-package main
+package docs
 
-var help = `
+var HelpDoc = `
 Welcome to simpleCLI mini tutorial!
 
 Usage: simpleCLI [COMMAND] [OPTIONS] [VALUE]...

@@ -5,6 +5,8 @@ import (
 	"io/ioutil"
 	"regexp"
 	"strings"
+
+	"github.com/sifatulrabbi/simplecli/pkg/constants"
 )
 
 const FILE_PERMISSION = 0644
@@ -14,7 +16,7 @@ func MinifyHTML(path string, oPath string) {
 	content, err := ioutil.ReadFile(path)
 	if err != nil {
 		fmt.Print("Invalid file path.\n")
-		panic(err)
+		panic(constants.INCORRECT_ARGS)
 	}
 	html := string(content)
 	minified := regexp.MustCompile(`\n`).ReplaceAllString(html, " ")
@@ -35,10 +37,6 @@ func MinifyHTML(path string, oPath string) {
 		writePath = "./" + strings.Join(sFilename[:len(sFilename)-1], "") + ".minified" + "." + sFilename[len(sFilename)-1]
 	}
 	if err := ioutil.WriteFile(writePath, []byte(minified), FILE_PERMISSION); err != nil {
-		panic("Unable to write the file.\n")
+		panic(constants.UNABLE_ERROR)
 	}
-}
-
-func MinifyCSS(css string) {
-
 }

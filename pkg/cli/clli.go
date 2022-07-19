@@ -1,20 +1,15 @@
-package main
+package cli
 
 import (
 	"fmt"
-	"os"
 	"strings"
 
-	"github.com/sifatulrabbi/simplecli/services"
+	"github.com/sifatulrabbi/simplecli/pkg/constants"
+	"github.com/sifatulrabbi/simplecli/pkg/docs"
+	"github.com/sifatulrabbi/simplecli/pkg/services"
 )
 
-const INVALID_ERROR = "Invalid format. Please use 'help' or 'h' for helps.\n"
-const NOT_FOUND_ERROR = "Command not found. Please use 'help' or 'h' to see help."
-
-func main() {
-	// All the cmd arguments
-	var args []string = os.Args[1:]
-
+func Cli(args []string) {
 	// Check if the user entered any commands or not.
 	if len(args) < 1 {
 		fmt.Print("No commands found\n")
@@ -22,7 +17,7 @@ func main() {
 	}
 	// Showing help or mini tutorial
 	if args[0] == "-h" || args[0] == "--help" || args[0] == "help" || args[0] == "h" {
-		fmt.Print(help)
+		fmt.Print(docs.HelpDoc)
 		return
 	}
 	// Input: `simpleCLI print Hello`
@@ -45,7 +40,7 @@ func printAnyThing(args []string) {
 func handleMinify(args []string) {
 	// Example: minify -m html -f ./index.html -o ./output.html
 	if l := len(args); l < 5 {
-		fmt.Print(INVALID_ERROR)
+		fmt.Print(constants.INVALID_ERROR)
 		return
 	}
 
@@ -54,7 +49,7 @@ func handleMinify(args []string) {
 
 	// Check for the syntax
 	if cmd1 != "-m" && cmd1 != "--method" || cmd2 != "-f" && cmd2 != "--file" {
-		fmt.Print(INVALID_ERROR)
+		fmt.Print(constants.INVALID_ERROR)
 		return
 	}
 	// Find the method and run the minifier
@@ -65,7 +60,7 @@ func handleMinify(args []string) {
 		if len(args) > 5 {
 			// Check the syntax
 			if len(args) != 7 {
-				fmt.Print(INVALID_ERROR)
+				fmt.Print(constants.INVALID_ERROR)
 			} else {
 				oPath := args[6]
 				services.MinifyHTML(path, oPath)
@@ -79,6 +74,6 @@ func handleMinify(args []string) {
 	case "js":
 		fmt.Print("Minifying css...\n")
 	default:
-		fmt.Print(NOT_FOUND_ERROR)
+		fmt.Print(constants.NOT_FOUND_ERROR)
 	}
 }
