@@ -4,15 +4,13 @@ import (
 	"fmt"
 	"io/ioutil"
 	"regexp"
-	"strings"
 
 	"github.com/sifatulrabbi/simplecli/pkg/constants"
+	"github.com/sifatulrabbi/simplecli/pkg/utils"
 )
 
-const FILE_PERMISSION = 0644
-
 // Minify HTML function
-func MinifyHTML(path string, oPath string) {
+func MinifyHTML(path string, outPath string) {
 	content, err := ioutil.ReadFile(path)
 	if err != nil {
 		fmt.Print("Invalid file path.\n")
@@ -29,14 +27,16 @@ func MinifyHTML(path string, oPath string) {
 	minified = regexp.MustCompile(`> <`).ReplaceAllString(minified, "><")
 
 	var writePath string
-	if oPath != "" {
-		writePath = oPath
+	if outPath != "" {
+		writePath = outPath
 	} else {
-		oPath := strings.Split(path, "/")
-		sFilename := strings.Split(oPath[len(oPath)-1], ".")
-		writePath = "./" + strings.Join(sFilename[:len(sFilename)-1], "") + ".minified" + "." + sFilename[len(sFilename)-1]
+		writePath = utils.GenOutputPath(path)
 	}
-	if err := ioutil.WriteFile(writePath, []byte(minified), FILE_PERMISSION); err != nil {
+	if err := ioutil.WriteFile(
+		writePath,
+		[]byte(minified),
+		constants.FILE_MODE,
+	); err != nil {
 		panic(constants.UNABLE_ERROR)
 	}
 }
