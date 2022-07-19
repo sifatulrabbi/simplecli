@@ -43,6 +43,7 @@ func minifyHandler(args []string) {
 		services.MinifyCSS(path, outPath)
 	case "js":
 		fmt.Print("Minifying css...\n")
+		services.MinifyJS(path, outPath)
 	default:
 		fmt.Print(constants.NOT_FOUND_ERROR)
 	}
