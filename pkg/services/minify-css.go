@@ -18,7 +18,8 @@ func MinifyCSS(path string, outPath string) {
 	// Convert bytes into strings
 	css := string(content)
 	// Minify the strings
-	minified := regexp.MustCompile(`\n`).ReplaceAllString(css, " ")
+	minified := regexp.MustCompile(`(//)+.*`).ReplaceAllString(css, "")
+	minified = regexp.MustCompile(`\n`).ReplaceAllString(minified, " ")
 	minified = regexp.MustCompile("  ").ReplaceAllString(minified, "")
 	minified = regexp.MustCompile("; ").ReplaceAllString(minified, ";")
 	minified = regexp.MustCompile(": ").ReplaceAllString(minified, ":")
