@@ -28,6 +28,10 @@ func Cli(args []string) {
 	if args[0] == "minify" {
 		minifyHandler(args)
 	}
+	// Create snippets handler
+	if args[0] == "snippets" {
+		snippetHandler(args)
+	}
 }
 
 func printAnyThing(args []string) {
