@@ -1,16 +1,16 @@
 package services
 
 import (
-	"io/ioutil"
+	"os"
 	"regexp"
 
 	"github.com/sifatulrabbi/simplecli/pkg/constants"
 	"github.com/sifatulrabbi/simplecli/pkg/utils"
 )
 
-func MinifyJS(path string, outPath string) {
+func MinifyJSFile(path string, outPath string) {
 	// Read file
-	content, err := ioutil.ReadFile(path)
+	content, err := os.ReadFile(path)
 	if err != nil {
 		// If the file is not found
 		panic(constants.INCORRECT_ARGS)
@@ -36,7 +36,7 @@ func MinifyJS(path string, outPath string) {
 	} else {
 		writePath = utils.GenOutputPath(path)
 	}
-	if err := ioutil.WriteFile(
+	if err := os.WriteFile(
 		writePath,
 		[]byte(minified),
 		constants.FILE_MODE,

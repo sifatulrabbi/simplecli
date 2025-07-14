@@ -7,7 +7,7 @@ import (
 	"github.com/sifatulrabbi/simplecli/pkg/docs"
 )
 
-func Cli(args []string) {
+func RunCli(args []string) {
 	// Check if the user entered any commands or not.
 	if len(args) < 1 {
 		fmt.Print("No commands found\n")

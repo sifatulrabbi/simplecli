@@ -2,7 +2,7 @@ package services
 
 import (
 	"fmt"
-	"io/ioutil"
+	"os"
 	"regexp"
 
 	"github.com/sifatulrabbi/simplecli/pkg/constants"
@@ -11,7 +11,7 @@ import (
 
 // Minify HTML function
 func MinifyHTML(path string, outPath string) {
-	content, err := ioutil.ReadFile(path)
+	content, err := os.ReadFile(path)
 	if err != nil {
 		fmt.Print("Invalid file path.\n")
 		panic(constants.INCORRECT_ARGS)
@@ -32,7 +32,7 @@ func MinifyHTML(path string, outPath string) {
 	} else {
 		writePath = utils.GenOutputPath(path)
 	}
-	if err := ioutil.WriteFile(
+	if err := os.WriteFile(
 		writePath,
 		[]byte(minified),
 		constants.FILE_MODE,

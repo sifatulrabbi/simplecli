@@ -9,5 +9,5 @@ import (
 func main() {
 	// All the cmd arguments
 	var args []string = os.Args[1:]
-	cli.Cli(args)
+	cli.RunCli(args)
 }

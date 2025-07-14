@@ -11,12 +11,12 @@ help:
 
 build:
 	@echo "Building SimpleCLI..."
-	go build -o simplecli ./cmd/main.go
+	go build -o simplecli ./cmd/old/main.go
 	@echo "Build complete! Binary: ./simplecli"
 
 run:
 	@echo "Running SimpleCLI..."
-	go run ./cmd/main.go $(ARGS)
+	go run ./cmd/old/main.go $(ARGS)
 
 clean:
 	@echo "Cleaning..."
