@@ -1,28 +1,55 @@
+# SimpleCLI Makefile
 
-.PHONY: build run clean install help
+.PHONY: build build-cli build-tui run run-cli run-tui clean install help
 
+# Default target
 help:
 	@echo "Available commands:"
-	@echo "  build    - Compile the application"
-	@echo "  run      - Run the CLI application"
-	@echo "  clean    - Remove built binaries"
-	@echo "  install  - Install dependencies"
-	@echo "  help     - Show this help message"
+	@echo "  build      - Compile both CLI and TUI applications"
+	@echo "  build-cli  - Compile the CLI application only"
+	@echo "  build-tui  - Compile the TUI application only"
+	@echo "  run        - Run the CLI application"
+	@echo "  run-cli    - Run the CLI application"
+	@echo "  run-tui    - Run the TUI application"
+	@echo "  clean      - Remove built binaries"
+	@echo "  install    - Install dependencies"
+	@echo "  help       - Show this help message"
 
-build:
+# Build both applications
+build: build-cli build-tui
+
+# Build the CLI application
+build-cli:
 	@echo "Building SimpleCLI..."
 	go build -o simplecli ./cmd/old/main.go
-	@echo "Build complete! Binary: ./simplecli"
+	@echo "CLI build complete! Binary: ./simplecli"
 
-run:
+# Build the TUI application
+build-tui:
+	@echo "Building SimpleCLI TUI..."
+	go build -o simplecli-tui ./cmd/tui/main.go
+	@echo "TUI build complete! Binary: ./simplecli-tui"
+
+# Run the CLI application (default)
+run: run-cli
+
+# Run the CLI application
+run-cli:
 	@echo "Running SimpleCLI..."
 	go run ./cmd/old/main.go $(ARGS)
 
+# Run the TUI application
+run-tui:
+	@echo "Running SimpleCLI TUI..."
+	go run ./cmd/tui/main.go $(ARGS)
+
+# Clean built binaries
 clean:
 	@echo "Cleaning..."
-	rm -f simplecli
+	rm -f simplecli simplecli-tui
 	@echo "Clean complete!"
 
+# Install dependencies
 install:
 	@echo "Installing dependencies..."
 	go mod tidy
