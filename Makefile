@@ -35,12 +35,10 @@ run: run-cli
 
 # Run the CLI application
 run-cli:
-	@echo "Running SimpleCLI..."
 	go run ./cmd/old/main.go $(ARGS)
 
 # Run the TUI application
 run-tui:
-	@echo "Running SimpleCLI TUI..."
 	go run ./cmd/tui/main.go $(ARGS)
 
 # Clean built binaries

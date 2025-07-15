@@ -1,4 +1,4 @@
-// Package tui
+// Package tui for handling the terminal models
 package tui
 
 import (
@@ -15,6 +15,7 @@ import (
 type MenuItem struct {
 	Title string
 	Desc  string
+	Exec  func() error
 }
 
 type Model struct {
@@ -26,17 +27,24 @@ type Model struct {
 func NewModel() Model {
 	return Model{
 		menu: []MenuItem{
-			{Title: "Minify", Desc: "Minify HTML, CSS, or JS file"},
-			{Title: "Snippets", Desc: "Generate a framework snippet"},
-			{Title: "Quit", Desc: "Exit the application"},
+			{
+				Title: "Minify",
+				Desc:  "Minify HTML, CSS, or JS file",
+			},
+			{
+				Title: "Snippets",
+				Desc:  "Generate a framework snippet",
+			},
+			{
+				Title: "Quit",
+				Desc:  "Exit the application",
+			},
 		},
 		selectedIdx: 0,
 	}
 }
 
-func (m Model) Init() tea.Cmd {
-	return nil
-}
+func (m Model) Init() tea.Cmd { return nil }
 
 func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	switch msg := msg.(type) {
@@ -59,7 +67,6 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				m.quitting = true
 				return m, tea.Quit
 			}
-			// Add handling for other menu items here
 		}
 	}
 	return m, nil
@@ -69,11 +76,11 @@ func (m Model) View() string {
 	if m.quitting {
 		return "Goodbye!\n"
 	}
-	out := "SimpleCLI TUI (Bubble Tea)\n\n"
+	out := ""
 	for i, item := range m.menu {
-		cursor := " "
+		cursor := "[ ]"
 		if m.selectedIdx == i {
-			cursor = ">"
+			cursor = "[x]"
 		}
 		out += cursor + " " + item.Title + " - " + item.Desc + "\n"
 	}
