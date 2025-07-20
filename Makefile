@@ -21,14 +21,16 @@ build: build-cli build-tui
 # Build the CLI application
 build-cli:
 	@echo "Building SimpleCLI..."
-	go build -o simplecli ./cmd/old/main.go
-	@echo "CLI build complete! Binary: ./simplecli"
+	@mkdir -p build
+	go build -o build/simplecli ./cmd/old/main.go
+	@echo "CLI build complete! Binary: ./build/simplecli"
 
 # Build the TUI application
 build-tui:
 	@echo "Building SimpleCLI TUI..."
-	go build -o simplecli-tui ./cmd/tui/main.go
-	@echo "TUI build complete! Binary: ./simplecli-tui"
+	@mkdir -p build
+	go build -o build/simplecli-tui ./cmd/tui/main.go
+	@echo "TUI build complete! Binary: ./build/simplecli-tui"
 
 # Run the CLI application (default)
 run: run-cli
@@ -44,7 +46,7 @@ run-tui:
 # Clean built binaries
 clean:
 	@echo "Cleaning..."
-	rm -f simplecli simplecli-tui
+	rm -rf build
 	@echo "Clean complete!"
 
 # Install dependencies

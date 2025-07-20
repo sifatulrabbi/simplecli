@@ -2,6 +2,7 @@
 package tui
 
 import (
+	"github.com/charmbracelet/bubbles/textinput"
 	tea "github.com/charmbracelet/bubbletea"
 )
 
@@ -22,6 +23,7 @@ type Model struct {
 	menu        []MenuItem
 	selectedIdx int
 	quitting    bool
+	textInput   textinput.Model
 }
 
 func NewModel() Model {
