@@ -5,8 +5,8 @@ import (
 	"os"
 	"regexp"
 
-	"github.com/sifatulrabbi/simplecli/pkg/constants"
-	"github.com/sifatulrabbi/simplecli/pkg/utils"
+	"github.com/sifatulrabbi/simplecli/internal/constants"
+	"github.com/sifatulrabbi/simplecli/internal/utils"
 )
 
 // Minify HTML function

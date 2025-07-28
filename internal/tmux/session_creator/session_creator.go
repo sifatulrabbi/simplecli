@@ -1,3 +1,4 @@
+// Package sessioncreator create new tmux sessions with tmuxinator
 package sessioncreator
 
 import (
@@ -11,8 +12,8 @@ import (
 const (
 	TmuxinatorConfigDir       = "/.config/tmuxinator/"
 	DefaultProjectRootDir     = "/coding/"
-	TestTmuxinatorConfigDir   = "/coding/personal-scripts/tmp/"
-	TestDefaultProjectRootDir = "/coding/personal-scripts/tmp/"
+	TestTmuxinatorConfigDir   = "/coding/simplecli/tmp/"
+	TestDefaultProjectRootDir = "/coding/simplecli/tmp/"
 )
 
 type TmuxSessionCreator struct {
@@ -22,6 +23,10 @@ type TmuxSessionCreator struct {
 
 func New() *TmuxSessionCreator {
 	return &TmuxSessionCreator{TmuxinatorConfigDir, DefaultProjectRootDir}
+}
+
+func NewTestMode() *TmuxSessionCreator {
+	return &TmuxSessionCreator{TestTmuxinatorConfigDir, TestDefaultProjectRootDir}
 }
 
 func (t *TmuxSessionCreator) CreateNewSession(projName string) error {

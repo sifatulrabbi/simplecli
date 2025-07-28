@@ -4,8 +4,8 @@ import (
 	"io/ioutil"
 	"regexp"
 
-	"github.com/sifatulrabbi/simplecli/pkg/constants"
-	"github.com/sifatulrabbi/simplecli/pkg/utils"
+	"github.com/sifatulrabbi/simplecli/internal/constants"
+	"github.com/sifatulrabbi/simplecli/internal/utils"
 )
 
 func MinifyCSS(path string, outPath string) {
