@@ -3,7 +3,7 @@ package cli
 import (
 	"fmt"
 
-	"github.com/sifatulrabbi/simplecli/pkg/constants"
+	"github.com/sifatulrabbi/simplecli/internal/constants"
 )
 
 // Example: simpleCLI snippets react component -n filename

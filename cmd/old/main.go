@@ -3,7 +3,7 @@ package main
 import (
 	"os"
 
-	"github.com/sifatulrabbi/simplecli/pkg/cli"
+	"github.com/sifatulrabbi/simplecli/internal/cli"
 )
 
 func main() {

@@ -3,8 +3,8 @@ package cli
 import (
 	"fmt"
 
-	"github.com/sifatulrabbi/simplecli/pkg/constants"
-	"github.com/sifatulrabbi/simplecli/pkg/services"
+	"github.com/sifatulrabbi/simplecli/internal/constants"
+	"github.com/sifatulrabbi/simplecli/internal/services"
 )
 
 func minifyHandler(args []string) {

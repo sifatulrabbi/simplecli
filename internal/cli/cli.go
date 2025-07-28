@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/sifatulrabbi/simplecli/pkg/docs"
+	"github.com/sifatulrabbi/simplecli/internal/docs"
 )
 
 func RunCli(args []string) {
