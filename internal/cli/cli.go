@@ -11,17 +11,15 @@ import (
 )
 
 func RunCli(args []string) {
-	fmt.Println(len(args), args)
 	// Check if the user entered any commands or not.
 	if len(args) < 1 {
 		fmt.Print("No commands found\n")
 		return
 	}
 	switch args[0] {
-	case "-h":
-	case "--help":
-	case "h":
-	case "help":
+	case "v", "version", "--version", "-v":
+		fmt.Println("SimpleCLI version 0.1.0 (beta)")
+	case "-h", "--help", "h", "help":
 		// Showing help or mini tutorial
 		fmt.Print(docs.HelpDoc)
 	case "print":
@@ -32,8 +30,7 @@ func RunCli(args []string) {
 	case "snippets":
 		// Create snippets handler
 		snippetHandler(args)
-	case "tmux-project":
-	case "tmux-session":
+	case "tmux-project", "tmux-session":
 		handleTmuxSession(args[1:])
 	default:
 		fmt.Println("Error: invalid action.")

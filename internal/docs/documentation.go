@@ -1,9 +1,9 @@
 package docs
 
 var HelpDoc = `
-Welcome to simpleCLI mini tutorial!
+Welcome to simplecli mini tutorial!
 
-Usage: simpleCLI [COMMAND] [OPTIONS] [VALUE]...
+Usage: simplecli [COMMAND] [OPTIONS] [VALUE]...
 
 COMMAND: print
 This will print the next value/values your have entered.
@@ -11,8 +11,8 @@ This will print the next value/values your have entered.
 COMMAND: minify
 This will minify HTML, CSS, JavaScript files.
 EXAMPLE: 
-	simpleCLI minify -m html -f ./index.html -o ./minified/index.html
-	simpleCLI minify -m js -f ./index.js
+	simplecli minify -m html -f ./index.html -o ./minified/index.html
+	simplecli minify -m js -f ./index.js
 OPTIONS:
 	-m, --method	Specify the method to use. Possible values html, css, js
 	-f, --file	Path to he target file
