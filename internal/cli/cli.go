@@ -7,6 +7,7 @@ import (
 
 	"github.com/sifatulrabbi/simplecli/internal/docs"
 	sessioncreator "github.com/sifatulrabbi/simplecli/internal/tmux/session_creator"
+	sessionspawner "github.com/sifatulrabbi/simplecli/internal/tmux/session_spawner"
 	"github.com/sifatulrabbi/simplecli/internal/utils"
 )
 
@@ -43,15 +44,23 @@ func handlePrint(args []string) {
 }
 
 func handleTmuxSession(args []string) {
-	isTestMode := args[0] == "--test"
-	s := utils.TernaryFnCall(isTestMode, sessioncreator.NewTestMode, sessioncreator.New)
-	if err := s.CreateNewSession(
-		utils.TernaryFnCall(
-			isTestMode,
-			func() string { return args[1] },
-			func() string { return args[0] },
-		),
-	); err != nil {
-		log.Fatalln("Error:", err)
+	switch args[0] {
+	case "open-all":
+		sessionspawner.SpawnSessions()
+
+	case "--test":
+		fallthrough
+	default:
+		isTestMode := args[0] == "--test"
+		s := utils.TernaryFnCall(isTestMode, sessioncreator.NewTestMode, sessioncreator.New)
+		if err := s.CreateNewSession(
+			utils.TernaryFnCall(
+				isTestMode,
+				func() string { return args[1] },
+				func() string { return args[0] },
+			),
+		); err != nil {
+			log.Fatalln("Error:", err)
+		}
 	}
 }
